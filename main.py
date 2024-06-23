@@ -1,6 +1,6 @@
 import os
-import pickle
 import sys
+import pickle
 
 from best_k import Best_K
 from data_parser import CustomerReviewCSVParser
@@ -45,7 +45,9 @@ else:
     parser = CustomerReviewCSVParser(CSV_FILE_NAME)
     parser.load_data()
     parser.tokenize_data()
-    dtm = DTM(parser.tokens, parser.terms, retrieve_from_cache=check_cache())
-    _process = COMMANDS_MAP[CMD](dtm, parser.df)
+    data_cached = check_cache()
+    dtm = DTM(parser.tokens, parser.terms, retrieve_from_cache=data_cached)
+    if not data_cached:
+        cache(dtm)
+    _process = COMMANDS_MAP[CMD](dtm, parser)
     _process.execute()
-    cache(dtm)

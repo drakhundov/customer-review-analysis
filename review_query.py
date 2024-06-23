@@ -5,13 +5,13 @@ from process_data import ProcessData
 
 
 class ReviewQuery(ProcessData):
-    def __init__(self, dtm, df):
+    def __init__(self, dtm, parser):
         # 'dtm' stand for document-term matrix.
         self.query = None
         self.m = dtm.m
         # DataFrame (CSV data). Matrix is used for searching but
         # a more extensive data is needed to provide search results.
-        self.df = df
+        self.df = parser.df
         self.terms = list(dtm.terms)
         self.stemmer = PorterStemmer()
         self.lemmatizer = WordNetLemmatizer()
