@@ -7,7 +7,7 @@ def power_method_svd(A, num_iters=100):
     """Takes a matrix and returns a list of [u, sigma, v],
     where u and v are left and right eigvecs respectively and
     sigma is the corresponding eigval.
-    NOTE: This function is not used independently. Use compute_svd instead."""
+    NOTE: Helper function. Use compute_svd instead."""
     n, m = A.shape
     svd_vals = list()
     n_eig = min(n, m)
